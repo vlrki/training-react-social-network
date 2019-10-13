@@ -1,22 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
+import Dialogs from './components/Dialogs/Dialogs';
+import Music from './components/Music/Music';
+import News from './components/News/News';
 
-function App() {
+const App = (props) => {
   return (
-    <>
+    <BrowserRouter>
       <Header/>
-      <Profile/>
-    </>
+
+      <Route path='/dialogs' component={Dialogs} />
+      <Route path='/profile' component={Profile} />
+      <Route path='/music' component={Music} />
+      <Route path='/news' component={News} />
+    </BrowserRouter>
   );
 }
 

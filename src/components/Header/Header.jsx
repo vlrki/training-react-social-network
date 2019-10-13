@@ -11,11 +11,11 @@ const Header = () => {
           <Navbar.Brand href="#home">Social Network</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Nav className="mr-auto">
-            <Nav.Item><Nav.Link href="#home">Home</Nav.Link></Nav.Item>
-            <Nav.Link href="#profile">Profile</Nav.Link>
-            <Nav.Link href="#messages">Messages</Nav.Link>
-            <Nav.Link href="#news">News</Nav.Link>
-            <Nav.Link href="#music">Music</Nav.Link>
+            <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item>
+            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="/dialogs">Messages</Nav.Link>
+            <Nav.Link href="/news">News</Nav.Link>
+            <Nav.Link href="/music">Music</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
