@@ -46,6 +46,9 @@ const Dialogs = () => {
     return (
         <Container>
             <Row>
+                <Col><h1>Dialogs</h1></Col>
+            </Row>
+            <Row>
                 <Col md={3}>
                     <Nav defaultActiveKey="/dialogs" className="flex-column">
                         <DialogItem id={dialogsData[0].id} name={dialogsData[0].name} />
@@ -55,8 +58,6 @@ const Dialogs = () => {
                     </Nav>
                 </Col>
                 <Col>
-                    <h1>Dialogs</h1>
-
                     <div className={s.messages}>
                         <Message id={messagesData[0].id} message={messagesData[0].message} />
                         <Message id={messagesData[1].id} message={messagesData[1].message} />
