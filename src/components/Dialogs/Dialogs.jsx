@@ -3,7 +3,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {NavLink} from 'react-router-dom';
 
@@ -20,8 +19,6 @@ const DialogItem = (props) => {
 }
 
 const Message = (props) => {
-    let path = "/dialogs/" + props.id;
-
     return (
         <div className={s.messages_item}>{props.message}</div>
     );
@@ -43,6 +40,10 @@ const Dialogs = () => {
         {id: 3, message: 'Fine thanks.'},
     ];
 
+    let dialogsElements = dialogsData.map(d => <DialogItem id={d.id} name={d.name}/>);
+
+    let messagesElements = messagesData.map(m => <Message id={m.id} message={m.message}/>);
+
     return (
         <Container>
             <Row>
@@ -51,18 +52,16 @@ const Dialogs = () => {
             <Row>
                 <Col md={3}>
                     <Nav defaultActiveKey="/dialogs" className="flex-column">
-                        <DialogItem id={dialogsData[0].id} name={dialogsData[0].name} />
-                        <DialogItem id={dialogsData[1].id} name={dialogsData[1].name} />
-                        <DialogItem id={dialogsData[2].id} name={dialogsData[2].name} />
-                        <DialogItem id={dialogsData[3].id} name={dialogsData[3].name} />
+
+                        {dialogsElements}
+
                     </Nav>
                 </Col>
                 <Col>
                     <div className={s.messages}>
-                        <Message id={messagesData[0].id} message={messagesData[0].message} />
-                        <Message id={messagesData[1].id} message={messagesData[1].message} />
-                        <Message id={messagesData[2].id} message={messagesData[2].message} />
-                        <Message id={messagesData[3].id} message={messagesData[3].message} />
+
+                        {messagesElements}
+
                     </div>
                 </Col>
             </Row>
