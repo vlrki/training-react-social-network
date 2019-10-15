@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 import s from './Profile.module.css';
 
@@ -16,9 +17,8 @@ const Profile = () => {
         <Row>
           <Col>
             <h1>Profile</h1>
-            <div>Name: VK</div>
-            <div>Date of birth: 16.03.1986</div>
-            <div>City: Ufa</div>
+
+            <ProfileInfo />
 
             <h2>Posts</h2>
             <Form className={s.form_add_post}>
