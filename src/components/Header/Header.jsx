@@ -14,7 +14,7 @@ const Header = () => {
           <Nav className="mr-auto">
             <Nav.Item><Nav.Link as={NavLink} to="/">Home</Nav.Link></Nav.Item>
             <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
-            <Nav.Link as={NavLink} to="/dialogs">Messages</Nav.Link>
+            <Nav.Link as={NavLink} to="/dialogs">Dialogs</Nav.Link>
             <Nav.Link as={NavLink} to="/news">News</Nav.Link>
             <Nav.Link as={NavLink} to="/music">Music</Nav.Link>
           </Nav>

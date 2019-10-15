@@ -14,7 +14,7 @@ const App = (props) => {
     <BrowserRouter>
       <Header/>
 
-      <Route path='/dialogs' component={Dialogs} />
+      <Route path='/dialogs' component={Dialogs} /> {/* exact? */}
       <Route path='/profile' component={Profile} />
       <Route path='/music' component={Music} />
       <Route path='/news' component={News} />
