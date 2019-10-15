@@ -28,25 +28,40 @@ const Message = (props) => {
 }
 
 const Dialogs = () => {
+
+    let dialogsData = [
+        {id: 0, name: 'Vasya'},
+        {id: 1, name: 'Katya'},
+        {id: 2, name: 'Masha'},
+        {id: 3, name: 'Dima'},
+    ];
+
+    let messagesData = [
+        {id: 0, message: 'Hi!'},
+        {id: 1, message: 'Hello!'},
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Fine thanks.'},
+    ];
+
     return (
         <Container>
             <Row>
                 <Col md={3}>
                     <Nav defaultActiveKey="/dialogs" className="flex-column">
-                        <DialogItem id="1" name="Vasya"/>
-                        <DialogItem id="2" name="Katya"/>
-                        <DialogItem id="3" name="Masha"/>
-                        <DialogItem id="4" name="Dima"/>
+                        <DialogItem id={dialogsData[0].id} name={dialogsData[0].name} />
+                        <DialogItem id={dialogsData[1].id} name={dialogsData[1].name} />
+                        <DialogItem id={dialogsData[2].id} name={dialogsData[2].name} />
+                        <DialogItem id={dialogsData[3].id} name={dialogsData[3].name} />
                     </Nav>
                 </Col>
                 <Col>
                     <h1>Dialogs</h1>
 
                     <div className={s.messages}>
-                        <Message message="Hi!" />
-                        <Message message="Hello!" />
-                        <Message message="How are you?" />
-                        <Message message="Fine thanks." />
+                        <Message id={messagesData[0].id} message={messagesData[0].message} />
+                        <Message id={messagesData[1].id} message={messagesData[1].message} />
+                        <Message id={messagesData[2].id} message={messagesData[2].message} />
+                        <Message id={messagesData[3].id} message={messagesData[3].message} />
                     </div>
                 </Col>
             </Row>
