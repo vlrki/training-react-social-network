@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
+import Friends from './Friends/Friends';
 
 import s from './Profile.module.css';
 
@@ -20,6 +21,8 @@ const Profile = (props) => {
 
                     <ProfileInfo />
 
+                    <Friends friends={props.state.friends} />
+
                     <h2>Posts</h2>
                     <Form className={s.form_add_post}>
                         <Form.Group controlId="formMessage">
@@ -31,7 +34,7 @@ const Profile = (props) => {
                         </Button>
                     </Form>
 
-                    <MyPosts posts={props.state.posts}/>
+                    <MyPosts posts={props.state.posts} />
                 </Col>
             </Row>
         </Container>

@@ -10,6 +10,8 @@ let state = {
             {id: 1, name: 'Katya'},
             {id: 2, name: 'Masha'},
             {id: 3, name: 'Dima'},
+            {id: 4, name: 'Petya'},
+            {id: 5, name: 'Rita'},
         ]
     },
     dialogsPage: {
