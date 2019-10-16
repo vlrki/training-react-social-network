@@ -11,7 +11,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 import s from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <Container>
             <Row>
@@ -31,7 +31,7 @@ const Profile = () => {
                         </Button>
                     </Form>
 
-                    <MyPosts/>
+                    <MyPosts posts={props.state.posts}/>
                 </Col>
             </Row>
         </Container>
