@@ -12,29 +12,29 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import s from './Profile.module.css';
 
 const Profile = () => {
-    return (        
-      <Container>
-        <Row>
-          <Col>
-            <h1>Profile</h1>
+    return (
+        <Container>
+            <Row>
+                <Col>
+                    <h1>Profile</h1>
 
-            <ProfileInfo />
+                    <ProfileInfo />
 
-            <h2>Posts</h2>
-            <Form className={s.form_add_post}>
-              <Form.Group controlId="formMessage">
-                <Form.Label>Text</Form.Label>
-                <Form.Control as="textarea" rows="3" placeholder="Enter text..." />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-            </Button>
-            </Form>
+                    <h2>Posts</h2>
+                    <Form className={s.form_add_post}>
+                        <Form.Group controlId="formMessage">
+                            <Form.Label>Text</Form.Label>
+                            <Form.Control as="textarea" rows="3" placeholder="Enter text..." />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
 
-            <MyPosts/>
-          </Col>
-        </Row>
-      </Container>
+                    <MyPosts/>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

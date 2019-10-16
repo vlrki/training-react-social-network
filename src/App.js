@@ -14,10 +14,10 @@ const App = (props) => {
     <BrowserRouter>
       <Header/>
 
-      <Route path='/dialogs' component={Dialogs} /> {/* exact? */}
-      <Route path='/profile' component={Profile} />
-      <Route path='/music' component={Music} />
-      <Route path='/news' component={News} />
+      <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} /> } /> {/* exact? */}
+      <Route path='/profile' render={ () => <Profile state={props.state.profilePage} /> } />
+      <Route path='/music' render={ () => <Music /> } />
+      <Route path='/news' render={ () => <News /> } />
     </BrowserRouter>
   );
 }
