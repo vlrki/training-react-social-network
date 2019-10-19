@@ -13,6 +13,12 @@ import Friends from './Friends/Friends';
 import s from './Profile.module.css';
 
 const Profile = (props) => {
+    let newPostElement = React.createRef();
+
+    let addPost = () => {
+        alert(newPostElement.current.value);
+    }
+
     return (
         <Container>
             <Row>
@@ -27,9 +33,9 @@ const Profile = (props) => {
                     <Form className={s.form_add_post}>
                         <Form.Group controlId="formMessage">
                             <Form.Label>Text</Form.Label>
-                            <Form.Control as="textarea" rows="3" placeholder="Enter text..." />
+                            <Form.Control as="textarea" rows="3" placeholder="Enter text..." ref={newPostElement} />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={addPost}>
                             Submit
                         </Button>
                     </Form>
