@@ -11,7 +11,7 @@ const Friend = (props) => {
     return (
         <Col xs={2} className={s.item}>
             <a href={path}>
-                <img src="https://cdn.wallpapersafari.com/11/79/xMyfJT.jpg"/>
+                <img src="https://cdn.wallpapersafari.com/11/79/xMyfJT.jpg" alt={props.name}/>
                 <span>{props.name}</span>
             </a>
         </Col>

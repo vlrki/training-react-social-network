@@ -11,14 +11,14 @@ import News from './components/News/News';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
-      <Header/>
+      <>
+          <Header/>
 
-      <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} /> } /> {/* exact? */}
-      <Route path='/profile' render={ () => <Profile state={props.state.profilePage} /> } />
-      <Route path='/music' render={ () => <Music /> } />
-      <Route path='/news' render={ () => <News /> } />
-    </BrowserRouter>
+          <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} /> } /> {/* exact? */}
+          <Route path='/profile' render={ () => <Profile state={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText} /> } />
+          <Route path='/music' render={ () => <Music /> } />
+          <Route path='/news' render={ () => <News /> } />
+      </>
   );
 }
 

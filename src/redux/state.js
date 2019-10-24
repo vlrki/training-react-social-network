@@ -1,3 +1,7 @@
+let rerenderEntireTree = () => {
+    console.log('rerenderEntireTree');
+};
+
 let state = {
     profilePage: {
         posts: [
@@ -12,7 +16,8 @@ let state = {
             {id: 3, name: 'Dima'},
             {id: 4, name: 'Petya'},
             {id: 5, name: 'Rita'},
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogs: [
@@ -28,6 +33,31 @@ let state = {
             {id: 3, message: 'Fine thanks.'},
         ],
     }
+};
+
+window.state = state;
+
+export const addPost = () => {
+    let post = {
+        id: 3,
+        message: state.profilePage.newPostText,
+        likeCount: 0
+    };
+
+    state.profilePage.posts.push(post);
+    state.profilePage.newPostText = '';
+
+    rerenderEntireTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+
+    rerenderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 };
 
 export default state;

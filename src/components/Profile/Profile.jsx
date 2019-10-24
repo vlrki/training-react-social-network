@@ -16,8 +16,14 @@ const Profile = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        alert(newPostElement.current.value);
-    }
+        props.addPost();
+    };
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+
+        props.updateNewPostText(text);
+    };
 
     return (
         <Container>
@@ -30,15 +36,18 @@ const Profile = (props) => {
                     <Friends friends={props.state.friends} />
 
                     <h2>Posts</h2>
-                    <Form className={s.form_add_post}>
+                    <div className={s.form_add_post}>
                         <Form.Group controlId="formMessage">
                             <Form.Label>Text</Form.Label>
-                            <Form.Control as="textarea" rows="3" placeholder="Enter text..." ref={newPostElement} />
+                            <Form.Control as="textarea" rows="3" placeholder="Enter text..."
+                                          ref={newPostElement}
+                                          onChange={onPostChange}
+                                          value={props.state.newPostText} />
                         </Form.Group>
-                        <Button variant="primary" type="submit" onClick={addPost}>
+                        <Button variant="primary" type="" onClick={addPost}>
                             Submit
                         </Button>
-                    </Form>
+                    </div>
 
                     <MyPosts posts={props.state.posts} />
                 </Col>
