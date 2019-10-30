@@ -8,7 +8,7 @@ import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import News from './components/News/News';
-import store from "./redux/state";
+import store from "./redux/store";
 
 const App = (props) => {
   return (

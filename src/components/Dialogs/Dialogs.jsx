@@ -11,24 +11,21 @@ import DialogMessage from './DialogMessage/DialogMessage';
 import s from './Dialogs.module.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {updateNewMessageCreator, sendMessageCreator} from "../../redux/state";
+import {updateNewMessageCreator, addNewMessageCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
     let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>);
     let messagesElements = props.state.messages.map(m => <DialogMessage id={m.id} message={m.message}/>);
-
     let newMessageElement = React.createRef();
 
     let onNewMessageChange = (e) => {
-        console.log(e.target);
-        console.log(e.target.value);
         let message = e.target.value;
 
         props.dispatch(updateNewMessageCreator(message));
     };
 
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator());
+        props.dispatch(addNewMessageCreator());
     };
 
     return (
