@@ -11,6 +11,7 @@ import DialogMessage from './DialogMessage/DialogMessage';
 import s from './Dialogs.module.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import {updateNewMessageCreator, sendMessageCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
     let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>);
@@ -18,9 +19,17 @@ const Dialogs = (props) => {
 
     let newMessageElement = React.createRef();
 
-    let addMessage = () => {
-        alert(newMessageElement.current.value);
-    }
+    let onNewMessageChange = (e) => {
+        console.log(e.target);
+        console.log(e.target.value);
+        let message = e.target.value;
+
+        props.dispatch(updateNewMessageCreator(message));
+    };
+
+    let onSendMessageClick = () => {
+        props.dispatch(sendMessageCreator());
+    };
 
     return (
         <Container>
@@ -42,14 +51,18 @@ const Dialogs = (props) => {
 
                     </div>
 
-                    <Form className={s.form_add_message}>
+                    <div className={s.form_add_message}>
                         <Form.Group controlId="formMessage">
-                            <Form.Control as="textarea" rows="3" placeholder="Enter text..." ref={newMessageElement} />
+                            <Form.Control as="textarea" rows="3"
+                                          placeholder="Enter text..."
+                                          ref={newMessageElement}
+                                          onChange={onNewMessageChange}
+                                          value={props.state.newMessageText} />
                         </Form.Group>
-                        <Button variant="primary" type="submit" onClick={addMessage}>
+                        <Button variant="primary" type="" onClick={onSendMessageClick}>
                             Submit
                         </Button>
-                    </Form>
+                    </div>
                 </Col>
             </Row>
         </Container>

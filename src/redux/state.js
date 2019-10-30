@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
     _state: {
@@ -32,6 +34,7 @@ let store = {
                 {id: 2, message: 'How are you?'},
                 {id: 3, message: 'Fine thanks.'},
             ],
+            newMessageText: ''
         }
     },
     getState() {
@@ -59,9 +62,28 @@ let store = {
             this._state.profilePage.newPostText = action.text;
 
             this._callSubscriber(this._state);
+        } else if (action.type === ADD_MESSAGE) {
+            let post = {
+                id: 4,
+                message: this._state.dialogsPage.newMessageText
+            };
+
+            this._state.dialogsPage.messages.push(post);
+            this._state.dialogsPage.newMessageText = '';
+
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.message;
+
+            this._callSubscriber(this._state);
         }
     }
 };
+
+export const sendMessageCreator = () => ({ type: ADD_MESSAGE });
+
+export const updateNewMessageCreator = (message) => ({ type: UPDATE_NEW_MESSAGE_TEXT, message: message });
+
 
 window.store = store;
 
