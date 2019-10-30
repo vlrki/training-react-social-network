@@ -15,8 +15,8 @@ const App = (props) => {
       <>
           <Header/>
 
-          <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} /> } /> {/* exact? */}
-          <Route path='/profile' render={ () => <Profile state={props.state.profilePage} addPost={props.addPost.bind(store)} updateNewPostText={props.updateNewPostText.bind(store)} /> } />
+          <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} dispatch={store.dispatch.bind(store)}  /> } /> {/* exact? */}
+          <Route path='/profile' render={ () => <Profile state={props.state.profilePage} dispatch={store.dispatch.bind(store)}  /> } />
           <Route path='/music' render={ () => <Music /> } />
           <Route path='/news' render={ () => <News /> } />
       </>

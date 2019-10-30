@@ -12,17 +12,23 @@ import Friends from './Friends/Friends';
 
 import s from './Profile.module.css';
 
+let addPostActionCreator = () => ({ type: 'ADD-POST' });
+
+let updateNewPostActionCreator = (text) => ({ type: 'UPDATE-NEW-POST-TEXT', text: text });
+
 const Profile = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        let action = addPostActionCreator();
+        props.dispatch(action);
     };
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
+        let action = updateNewPostActionCreator(text)
 
-        props.updateNewPostText(text);
+        props.dispatch(action);
     };
 
     return (
