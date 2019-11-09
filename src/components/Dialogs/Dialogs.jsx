@@ -11,21 +11,21 @@ import DialogMessage from './DialogMessage/DialogMessage';
 import s from './Dialogs.module.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {updateNewMessageCreator, addNewMessageCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>);
-    let messagesElements = props.state.messages.map(m => <DialogMessage id={m.id} message={m.message}/>);
+    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>);
+    let messagesElements = props.messages.map(m => <DialogMessage id={m.id} message={m.message}/>);
+
     let newMessageElement = React.createRef();
 
     let onNewMessageChange = (e) => {
         let message = e.target.value;
 
-        props.dispatch(updateNewMessageCreator(message));
+        props.onNewMessageChange(message);
     };
 
     let onSendMessageClick = () => {
-        props.dispatch(addNewMessageCreator());
+        props.onSendMessageClick();
     };
 
     return (
@@ -54,7 +54,7 @@ const Dialogs = (props) => {
                                           placeholder="Enter text..."
                                           ref={newMessageElement}
                                           onChange={onNewMessageChange}
-                                          value={props.state.newMessageText} />
+                                          value={props.newMessageText} />
                         </Form.Group>
                         <Button variant="primary" type="" onClick={onSendMessageClick}>
                             Submit
@@ -64,6 +64,6 @@ const Dialogs = (props) => {
             </Row>
         </Container>
     );
-}
+};
 
 export default Dialogs;

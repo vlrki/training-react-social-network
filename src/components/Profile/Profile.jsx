@@ -9,26 +9,18 @@ import Button from 'react-bootstrap/Button';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Friends from './Friends/Friends';
-
 import s from './Profile.module.css';
-
-let addPostActionCreator = () => ({ type: 'ADD-POST' });
-
-let updateNewPostActionCreator = (text) => ({ type: 'UPDATE-NEW-POST-TEXT', text: text });
 
 const Profile = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let action = addPostActionCreator();
-        props.dispatch(action);
+        props.addPost();
     };
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        let action = updateNewPostActionCreator(text)
-
-        props.dispatch(action);
+        props.onPostChange(text);
     };
 
     return (
@@ -39,7 +31,7 @@ const Profile = (props) => {
 
                     <ProfileInfo />
 
-                    <Friends friends={props.state.friends} />
+                    <Friends friends={props.friends} />
 
                     <h2>Posts</h2>
                     <div className={s.form_add_post}>
@@ -48,18 +40,18 @@ const Profile = (props) => {
                             <Form.Control as="textarea" rows="3" placeholder="Enter text..."
                                           ref={newPostElement}
                                           onChange={onPostChange}
-                                          value={props.state.newPostText} />
+                                          value={props.newPostText} />
                         </Form.Group>
                         <Button variant="primary" type="" onClick={addPost}>
                             Submit
                         </Button>
                     </div>
 
-                    <MyPosts posts={props.state.posts} />
+                    <MyPosts posts={props.posts} />
                 </Col>
             </Row>
         </Container>
     );
-}
+};
 
 export default Profile;
