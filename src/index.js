@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './redux/redux-store';
 import {BrowserRouter} from "react-router-dom";
-import {Provider} from './StoreContext';
+import {Provider} from 'react-redux';
 
 
 let rerenderEntireTree = () => {
