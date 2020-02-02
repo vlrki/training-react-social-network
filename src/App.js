@@ -14,8 +14,8 @@ const App = (props) => {
       <>
           <Header/>
 
-          <Route path='/dialogs' render={ () => <DialogsContainer store={props.store}  /> } /> {/* exact? */}
-          <Route path='/profile' render={ () => <ProfileContainer store={props.store}  /> } />
+          <Route path='/dialogs' render={ () => <DialogsContainer /> } /> {/* exact? */}
+          <Route path='/profile' render={ () => <ProfileContainer /> } />
           <Route path='/music' render={ () => <Music /> } />
           <Route path='/news' render={ () => <News /> } />
       </>
