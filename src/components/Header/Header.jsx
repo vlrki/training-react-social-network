@@ -17,6 +17,7 @@ const Header = () => {
             <Nav.Link as={NavLink} to="/dialogs">Dialogs</Nav.Link>
             <Nav.Link as={NavLink} to="/news">News</Nav.Link>
             <Nav.Link as={NavLink} to="/music">Music</Nav.Link>
+            <Nav.Link as={NavLink} to="/users">Users</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
