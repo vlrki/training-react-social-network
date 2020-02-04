@@ -13,8 +13,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>);
-    let messagesElements = props.messages.map(m => <DialogMessage id={m.id} message={m.message}/>);
+    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} key={d.id} name={d.name}/>);
+    let messagesElements = props.messages.map(m => <DialogMessage id={m.id} key={m.id} message={m.message}/>);
 
     let newMessageElement = React.createRef();
 
