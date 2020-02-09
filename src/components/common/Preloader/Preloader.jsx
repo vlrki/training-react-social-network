@@ -9,7 +9,7 @@ let Preloader = (props) => {
     return <Container>
         <Row>
             <Col>
-                <img src={preloader} />
+                <img src={preloader} alt='' />
             </Col>
         </Row>
     </Container>

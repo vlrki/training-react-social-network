@@ -14,13 +14,9 @@ import s from './Profile.module.css';
 const Profile = (props) => {
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.addPost();
-    };
-
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.onPostChange(text);
+        props.updateNewPost(text);
     };
 
     return (
@@ -29,7 +25,7 @@ const Profile = (props) => {
                 <Col>
                     <h1>Profile</h1>
 
-                    <ProfileInfo />
+                    <ProfileInfo {...props} />
 
                     <Friends friends={props.friends} />
 
@@ -38,11 +34,11 @@ const Profile = (props) => {
                         <Form.Group controlId="formMessage">
                             <Form.Label>Text</Form.Label>
                             <Form.Control as="textarea" rows="3" placeholder="Enter text..."
-                                          ref={newPostElement}
-                                          onChange={onPostChange}
-                                          value={props.newPostText} />
+                                ref={newPostElement}
+                                onChange={onPostChange}
+                                value={props.newPostText} />
                         </Form.Group>
-                        <Button variant="primary" type="" onClick={addPost}>
+                        <Button variant="primary" type="" onClick={props.addPost}>
                             Submit
                         </Button>
                     </div>

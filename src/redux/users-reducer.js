@@ -14,7 +14,7 @@ let initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-    switch (action.type) {
+    switch (action.type) { 
         case FOLLOW:
             return {
                 ...state,

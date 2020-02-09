@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Pagination from 'react-bootstrap/Pagination';
+import { NavLink } from 'react-router-dom'
 
 import css from "./Users.module.css";
 import profileImage from '../../assets/profile.png';
@@ -27,7 +28,9 @@ let Users = (props) => {
             props.users.map(u => <Row className={css.item} key={u.id}>
                 <Col xs={2}>
                     <div className={css.photo}>
-                        <img src={u.photos.small === null ? profileImage : u.photos.small} alt={u.name} />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small === null ? profileImage : u.photos.small} alt={u.name} />
+                        </NavLink>
                     </div>
                     <div className={css.follow}>
                         {u.followed
@@ -48,11 +51,10 @@ let Users = (props) => {
                 </Col>
             </Row>
             )
-        }            
+        }           
             
         <Pagination>{pages.map(p => p)}</Pagination>
     </Container>
-
 }
 
 export default Users;
