@@ -9,15 +9,15 @@ import { NavLink } from 'react-router-dom'
 import css from "./Users.module.css";
 import profileImage from '../../assets/profile.png';
 
-let Users = (props) => {  
+let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    
+
     let pages = [];
 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(
-            <Pagination.Item key={i} active={i === props.currentPage} onClick={() => { props.onPageChanged(i)}}>
-            {i}
+            <Pagination.Item key={i} active={i === props.currentPage} onClick={() => { props.onPageChanged(i) }}>
+                {i}
             </Pagination.Item>,
         );
     }
@@ -51,8 +51,8 @@ let Users = (props) => {
                 </Col>
             </Row>
             )
-        }           
-            
+        }
+
         <Pagination>{pages.map(p => p)}</Pagination>
     </Container>
 }

@@ -3,7 +3,7 @@ import './App.css';
 
 import { Route } from 'react-router-dom';
 
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -13,7 +13,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 const App = (props) => {
   return (
     <>
-      <Header />
+      <HeaderContainer />
 
       <Route path='/dialogs' render={() => <DialogsContainer />} /> {/* exact? */}
       <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
