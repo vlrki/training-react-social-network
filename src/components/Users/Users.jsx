@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom'
 import css from "./Users.module.css";
 import profileImage from '../../assets/profile.png';
 
+
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -34,8 +35,8 @@ let Users = (props) => {
                     </div>
                     <div className={css.follow}>
                         {u.followed
-                            ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                            : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                            ? <button onClick={() => { props.onUnfollow(u.id) }}>Unfollow</button>
+                            : <button onClick={() => { props.onFollow(u.id) }}>Follow</button>}
                     </div>
                 </Col>
                 <Col xs={8} className={css.info}>

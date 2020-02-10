@@ -1,33 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { follow, unfollow, setUsers, setCurrentPage, setTotalUsers, setIsFetching } from '../../redux/users-reducer';
-import axios from 'axios';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
+import { userAPI } from '../../api/userAPI';
 
 class UsersContainer extends React.Component {
 
     componentDidMount(props) {
         this.props.setIsFetching(true);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.totalUsersCount}`)
-            .then(response => {
-                // debugger
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsers(response.data.totalCount);
-                this.props.setIsFetching(false);
-            });
+        userAPI.getUsers(this.props.currentPage, this.props.totalUsersCount).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setTotalUsers(data.totalCount);
+            this.props.setIsFetching(false);
+        });
     }
+
     onPageChanged = (pageNumber) => {
         this.props.setIsFetching(true);
         this.props.setCurrentPage(pageNumber);
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
-                // debugger
-                this.props.setUsers(response.data.items);
-                this.props.setIsFetching(false);
-            });
+        userAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setIsFetching(false);
+        });
+    }
+
+    onFollow = (userId) => {
+        userAPI.follow(userId).then(data => {
+            this.props.follow(userId);
+        });
+    }
+
+    onUnfollow = (userId) => {
+        userAPI.unfollow(userId).then(data => {
+            this.props.unfollow(userId);
+        });
     }
 
     render() {
@@ -37,9 +46,9 @@ class UsersContainer extends React.Component {
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
                 onPageChanged={this.onPageChanged}
+                onFollow={this.onFollow}
+                onUnfollow={this.onUnfollow}
                 users={this.props.users}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
             />
         </>
     }
