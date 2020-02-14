@@ -1,3 +1,5 @@
+import { userAPI } from '../api/userAPI';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -80,13 +82,55 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const follow = (userId) => ({ type: FOLLOW, userId: userId });
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId: userId });
+export const followSuccess = (userId) => ({ type: FOLLOW, userId: userId });
+export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId: userId });
 export const setUsers = (users) => ({ type: SET_USERS, users: users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage });
 export const setTotalUsers = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount });
 export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching: isFetching });
 export const setFollowingInProgress = (userId, isFetching) => ({ type: SET_FOLLOWING_IN_PROGRESS, isFetching: isFetching, userId: userId });
+
+
+export const getUsers = (currentPage, pageSize) => {
+
+    return (dispatch) => {
+
+        dispatch(setIsFetching(true));
+
+        userAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsers(data.totalCount));
+            dispatch(setCurrentPage(currentPage));
+            dispatch(setIsFetching(false));
+        });
+    }
+}
+
+export const follow = (userId) => {
+
+    return (dispatch) => {
+
+        dispatch(setFollowingInProgress(userId, true));
+
+        userAPI.follow(userId).then(data => {
+            dispatch(followSuccess(userId));
+            dispatch(setFollowingInProgress(userId, false));
+        });
+    }
+}
+
+export const unfollow = (userId) => {
+
+    return (dispatch) => {
+    
+        dispatch(setFollowingInProgress(userId, true));
+
+        userAPI.unfollow(userId).then(data => {
+            dispatch(unfollowSuccess(userId));
+            dispatch(setFollowingInProgress(userId, false));
+        });
+    }
+}
 
 
 export default usersReducer;
