@@ -122,7 +122,7 @@ export const follow = (userId) => {
 export const unfollow = (userId) => {
 
     return (dispatch) => {
-    
+
         dispatch(setFollowingInProgress(userId, true));
 
         userAPI.unfollow(userId).then(data => {
