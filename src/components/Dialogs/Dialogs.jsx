@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,8 +14,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} key={d.id} name={d.name}/>);
-    let messagesElements = props.messages.map(m => <DialogMessage id={m.id} key={m.id} message={m.message}/>);
+    let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} key={d.id} name={d.name} />);
+    let messagesElements = props.messages.map(m => <DialogMessage id={m.id} key={m.id} message={m.message} />);
 
     let newMessageElement = React.createRef();
 
@@ -27,6 +28,10 @@ const Dialogs = (props) => {
     let onSendMessageClick = () => {
         props.onSendMessageClick();
     };
+
+    if (!props.isAuth) {
+        return <Redirect to={'/login'} />
+    }
 
     return (
         <Container>
@@ -51,10 +56,10 @@ const Dialogs = (props) => {
                     <div className={s.form_add_message}>
                         <Form.Group controlId="formMessage">
                             <Form.Control as="textarea" rows="3"
-                                          placeholder="Enter text..."
-                                          ref={newMessageElement}
-                                          onChange={onNewMessageChange}
-                                          value={props.newMessageText} />
+                                placeholder="Enter text..."
+                                ref={newMessageElement}
+                                onChange={onNewMessageChange}
+                                value={props.newMessageText} />
                         </Form.Group>
                         <Button variant="primary" type="" onClick={onSendMessageClick}>
                             Submit
