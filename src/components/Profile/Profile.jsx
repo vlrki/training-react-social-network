@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import MyPosts from './MyPosts/MyPosts';
+import ProfileStatus from './ProfileInfo/ProfileStatus';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Friends from './Friends/Friends';
 import s from './Profile.module.css';
@@ -25,6 +26,7 @@ const Profile = (props) => {
                 <Col>
                     <h1>Profile</h1>
 
+                    <ProfileStatus status="Test status" />
                     <ProfileInfo {...props} />
 
                     <Friends friends={props.friends} />
