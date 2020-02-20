@@ -1,8 +1,9 @@
-import { userAPI } from '../api/userAPI';
+import { userAPI, profileAPI } from '../api/userAPI';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     posts: [
@@ -19,7 +20,8 @@ let initialState = {
         { id: 5, name: 'Rita' },
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -52,6 +54,15 @@ const profileReducer = (state = initialState, action) => {
             return stateCopy;
         }
 
+        case SET_STATUS: {
+            let stateCopy = {
+                ...state,
+                status: action.status
+            };
+
+            return stateCopy;
+        }
+
         default:
             return state;
     }
@@ -60,12 +71,29 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: ADD_POST });
 export const updateNewPost = (text) => ({ type: UPDATE_NEW_POST_TEXT, text: text });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile: profile });
+export const setStatus = (status) => ({ type: SET_STATUS, status: status });
 
 export const getUserProfile = (userId) => (dispatch) => {
+    userAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        });
+};
 
-    userAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response))
-    });
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(response => {
+            dispatch(setStatus(response.data))
+        });
+};
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.putStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 1) {
+                dispatch(setStatus(status));
+            }
+        });
 };
 
 export default profileReducer;

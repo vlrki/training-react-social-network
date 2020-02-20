@@ -26,7 +26,7 @@ const Profile = (props) => {
                 <Col>
                     <h1>Profile</h1>
 
-                    <ProfileStatus status="Test status" />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                     <ProfileInfo {...props} />
 
                     <Friends friends={props.friends} />
