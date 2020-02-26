@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -12,25 +11,27 @@ import DialogMessage from './DialogMessage/DialogMessage';
 import s from './Dialogs.module.css';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { reduxForm, Field } from 'redux-form';
+
+
+const AddMessageForm = (props) => {
+    return <Form onSubmit={props.handleSubmit}>
+        <Form.Group controlId="formMessage">
+            <Field component="textarea" rows="3" name="newMessageBody" className="form-control"
+                placeholder="Enter text..." />
+        </Form.Group>
+        <Button variant="primary" type="">
+            Submit
+        </Button>
+    </Form>;
+}
 
 const Dialogs = (props) => {
     let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} key={d.id} name={d.name} />);
     let messagesElements = props.messages.map(m => <DialogMessage id={m.id} key={m.id} message={m.message} />);
 
-    let newMessageElement = React.createRef();
-
-    let onNewMessageChange = (e) => {
-        let message = e.target.value;
-
-        props.onNewMessageChange(message);
-    };
-
-    let onSendMessageClick = () => {
-        props.onSendMessageClick();
-    };
-
-    if (!props.isAuth) {
-        return <Redirect to={'/login'} />
+    let addNewMessage = (values) => {
+        props.onSendMessageClick(values.newMessageBody);
     }
 
     return (
@@ -54,21 +55,14 @@ const Dialogs = (props) => {
                     </div>
 
                     <div className={s.form_add_message}>
-                        <Form.Group controlId="formMessage">
-                            <Form.Control as="textarea" rows="3"
-                                placeholder="Enter text..."
-                                ref={newMessageElement}
-                                onChange={onNewMessageChange}
-                                value={props.newMessageText} />
-                        </Form.Group>
-                        <Button variant="primary" type="" onClick={onSendMessageClick}>
-                            Submit
-                        </Button>
+                        <AddMessageFormRedux onSubmit={addNewMessage} />
                     </div>
                 </Col>
             </Row>
         </Container>
     );
 };
+
+const AddMessageFormRedux = reduxForm({ form: "dialogAddMessageForm" })(AddMessageForm);
 
 export default Dialogs;
