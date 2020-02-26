@@ -12,12 +12,31 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Friends from './Friends/Friends';
 import s from './Profile.module.css';
 
-const Profile = (props) => {
-    let newPostElement = React.createRef();
+import { reduxForm, Field } from 'redux-form';
 
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.updateNewPost(text);
+
+
+export const AddNewPostForm = (props) => {
+    return (
+        <Form onSubmit={props.handleSubmit}>
+            <Form.Label>Text</Form.Label>
+            <Field className="form-control" 
+                component="textarea" 
+                name="newPostText"
+                rows="3" 
+                placeholder="Enter text..."
+            />
+            <Button variant="primary" type="">
+                Add post
+            </Button>
+        </Form>
+    );
+}
+
+const Profile = (props) => {
+    
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText);
     };
 
     return (
@@ -33,16 +52,7 @@ const Profile = (props) => {
 
                     <h2>Posts</h2>
                     <div className={s.form_add_post}>
-                        <Form.Group controlId="formMessage">
-                            <Form.Label>Text</Form.Label>
-                            <Form.Control as="textarea" rows="3" placeholder="Enter text..."
-                                ref={newPostElement}
-                                onChange={onPostChange}
-                                value={props.newPostText} />
-                        </Form.Group>
-                        <Button variant="primary" type="" onClick={props.addPost}>
-                            Submit
-                        </Button>
+                        <ProfileAddNewPostForm onSubmit={onAddPost} />
                     </div>
 
                     <MyPosts posts={props.posts} />
@@ -51,5 +61,7 @@ const Profile = (props) => {
         </Container>
     );
 };
+
+const ProfileAddNewPostForm = reduxForm({form: "profileAddNewPostForm"})(AddNewPostForm);
 
 export default Profile;
