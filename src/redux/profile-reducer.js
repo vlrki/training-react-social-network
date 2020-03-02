@@ -84,7 +84,6 @@ export const updateStatus = (status) => (dispatch) => {
 };
 
 export const addPost = (newPostText) => (dispatch) => {
-    debugger;
     dispatch(addPostCreator(newPostText));
 };
 

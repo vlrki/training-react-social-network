@@ -14,17 +14,22 @@ import s from './Profile.module.css';
 
 import { reduxForm, Field } from 'redux-form';
 
+import { maxLengthCreator, required } from "../../utils/validators/validators";
+import { Textarea } from "../common/FormsControls/FormsControls";
 
+const maxLength100 = maxLengthCreator(100);
 
 export const AddNewPostForm = (props) => {
     return (
         <Form onSubmit={props.handleSubmit}>
             <Form.Label>Text</Form.Label>
-            <Field className="form-control" 
-                component="textarea" 
+            <Field
+                component={Textarea}
+                type="textarea"
                 name="newPostText"
-                rows="3" 
+                rows="3"
                 placeholder="Enter text..."
+                validate={[required, maxLength100]}
             />
             <Button variant="primary" type="">
                 Add post
@@ -34,7 +39,7 @@ export const AddNewPostForm = (props) => {
 }
 
 const Profile = (props) => {
-    
+
     let onAddPost = (values) => {
         props.addPost(values.newPostText);
     };
@@ -62,6 +67,6 @@ const Profile = (props) => {
     );
 };
 
-const ProfileAddNewPostForm = reduxForm({form: "profileAddNewPostForm"})(AddNewPostForm);
+const ProfileAddNewPostForm = reduxForm({ form: "profileAddNewPostForm" })(AddNewPostForm);
 
 export default Profile;

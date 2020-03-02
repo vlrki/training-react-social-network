@@ -13,12 +13,20 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { reduxForm, Field } from 'redux-form';
 
+import { maxLengthCreator, required } from "../../utils/validators/validators";
+import { Textarea } from "../common/FormsControls/FormsControls";
+
+const maxLength100 = maxLengthCreator(100);
 
 const AddMessageForm = (props) => {
     return <Form onSubmit={props.handleSubmit}>
         <Form.Group controlId="formMessage">
-            <Field component="textarea" rows="3" name="newMessageBody" className="form-control"
-                placeholder="Enter text..." />
+            <Field component={Textarea}
+                rows="3"
+                name="newMessageBody"
+                placeholder="Enter text..."
+                validate={[required, maxLength100]}
+            />
         </Form.Group>
         <Button variant="primary" type="">
             Submit
