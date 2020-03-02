@@ -10,6 +10,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import LoginPage from './components/Login/Login';
+import LogoutPage from './components/Login/Logout';
 
 const App = (props) => {
   return (
@@ -22,6 +23,7 @@ const App = (props) => {
       <Route path='/news' render={() => <News />} />
       <Route path='/users' render={() => <UsersContainer />} />
       <Route path='/login' render={() => <LoginPage />} />
+      <Route path='/logout' render={() => <LogoutPage />} />
     </>
   );
 }

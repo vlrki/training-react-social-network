@@ -4,14 +4,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import { login, logout } from '../../redux/auth-reducer';
 
 import { minLengthCreator, maxLengthCreator, required } from "../../utils/validators/validators";
 import { Input, Password } from "../common/FormsControls/FormsControls";
+import { Redirect } from 'react-router-dom';
 
 const minLength2 = minLengthCreator(2);
 const minLength6 = minLengthCreator(6);
-const maxLength12 = maxLengthCreator(12);
+const maxLength50 = maxLengthCreator(50);
 
 const LoginForm = (props) => {
 
@@ -50,7 +53,7 @@ const LoginForm = (props) => {
                 name={"email"}
                 type={"email"}
                 placeholder="Login"
-                validate={[required, minLength2, maxLength12]}
+                validate={[required, minLength2, maxLength50]}
             />
         </Form.Group>
 
@@ -61,7 +64,7 @@ const LoginForm = (props) => {
                 name={"password"}
                 type={"password"}
                 placeholder="Password"
-                validate={[required, minLength6, maxLength12]}
+                validate={[required, minLength6, maxLength50]}
             />
         </Form.Group>
 
@@ -77,10 +80,14 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
-const Login = () => {
+const Login = (props) => {
 
     const onSubmit = (formData) => {
-        console.log(formData);
+        props.login(formData.email, formData.password, formData.rememberMe);
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={"/profile"} />
     }
 
     return <Container>
@@ -93,4 +100,8 @@ const Login = () => {
     </Container>;
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, { login, logout })(Login);
