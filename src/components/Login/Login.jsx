@@ -72,6 +72,12 @@ const LoginForm = (props) => {
             <Field component={ReduxFormCheckbox} name={"rememberMe"} type={"checkbox"} label={"Remember me"} />
         </Form.Group>
 
+        { props.error  && 
+        <div class="alert alert-danger" role="alert">
+            {props.error}
+        </div>
+        }
+
         <Button variant="primary" type="submit">
             Submit
         </Button>
