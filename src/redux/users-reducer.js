@@ -91,16 +91,16 @@ export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetchin
 export const setFollowingInProgress = (userId, isFetching) => ({ type: SET_FOLLOWING_IN_PROGRESS, isFetching: isFetching, userId: userId });
 
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
 
     return (dispatch) => {
 
         dispatch(setIsFetching(true));
 
-        userAPI.getUsers(currentPage, pageSize).then(data => {
+        userAPI.getUsers(page, pageSize).then(data => {
             dispatch(setUsers(data.items));
             dispatch(setTotalUsers(data.totalCount));
-            dispatch(setCurrentPage(currentPage));
+            dispatch(setCurrentPage(page));
             dispatch(setIsFetching(false));
         });
     }
