@@ -16,10 +16,9 @@ const minLength2 = minLengthCreator(2);
 const minLength6 = minLengthCreator(6);
 const maxLength50 = maxLengthCreator(50);
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
 
     const ReduxFormControl = ({ input, meta, type, placeholder, min, max }) => {
-        // debugger;
         return (
             <Form.Control
                 type={type}
@@ -33,7 +32,6 @@ const LoginForm = (props) => {
     }
 
     const ReduxFormCheckbox = ({ input, meta, type, label }) => {
-        // debugger;
         return (
             <Form.Check
                 type={type}
@@ -45,7 +43,7 @@ const LoginForm = (props) => {
         )
     }
 
-    return <Form onSubmit={props.handleSubmit}>
+    return <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicLogin">
             <Form.Label>Login</Form.Label>
             <Field
@@ -72,10 +70,10 @@ const LoginForm = (props) => {
             <Field component={ReduxFormCheckbox} name={"rememberMe"} type={"checkbox"} label={"Remember me"} />
         </Form.Group>
 
-        { props.error  && 
-        <div class="alert alert-danger" role="alert">
-            {props.error}
-        </div>
+        { error &&
+            <div class="alert alert-danger" role="alert">
+                {error}
+            </div>
         }
 
         <Button variant="primary" type="submit">

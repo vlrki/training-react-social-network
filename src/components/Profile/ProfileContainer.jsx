@@ -4,7 +4,7 @@ import Profile from './Profile';
 import { addPost, getUserProfile, getStatus, updateStatus } from "../../redux/profile-reducer";
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
@@ -13,8 +13,10 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.match.params.userId;
 
-        if (!userId) {
-            userId = 5851;
+        if (!userId && this.props.isAuth) {
+            userId = 5851 //this.props.authorizedUserId; //;
+        } else {
+            // <Redirect to="login" />
         }
 
         this.props.getUserProfile(userId);
@@ -36,6 +38,8 @@ const mapStateToProps = (state) => {
         newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 };
 
