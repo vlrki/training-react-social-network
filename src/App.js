@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { Route, withRouter, BrowserRouter } from 'react-router-dom';
 import { initializeApp } from './redux/app-reducer';
+import store from './redux/redux-store';
 
 import HeaderContainer from './components/Header/HeaderContainer';
 import Music from './components/Music/Music';
@@ -51,7 +51,18 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default compose(
+let AppContainer = compose(
     withRouter,
     connect(mapStateToProps, { initializeApp }))(App);
 
+let MainApp = (props) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    );
+}
+
+export default MainApp;
