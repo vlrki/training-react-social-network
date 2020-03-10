@@ -6,8 +6,8 @@ export const ProfileStatus = (props) => {
     let [status, setStatus] = useState(props.status);
 
     useEffect(() => {
-        setStatus(props.state);
-    }, [props.state]);
+        setStatus(props.status);
+    }, [props.status]);
 
     let activateEditMode = () => {
         setEditMode(true);
