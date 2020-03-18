@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import './App.css';
 
 import { connect, Provider } from 'react-redux';
@@ -8,14 +8,15 @@ import { initializeApp } from './redux/app-reducer';
 import store from './redux/redux-store';
 
 import HeaderContainer from './components/Header/HeaderContainer';
-import Music from './components/Music/Music';
-import News from './components/News/News';
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import LoginPage from './components/Login/Login';
-import LogoutPage from './components/Login/Logout';
 import Preloader from './components/common/Preloader/Preloader';
+
+const Music = React.lazy(() => import('./components/Music/Music'));
+const News = React.lazy(() => import('./components/News/News'));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
+const UsersContainer = React.lazy(() => import("./components/Users/UsersContainer"));
+const LoginPage = React.lazy(() => import('./components/Login/Login'));
+const LogoutPage = React.lazy(() => import('./components/Login/Logout'));
 
 class App extends Component {
 
@@ -32,13 +33,15 @@ class App extends Component {
                 <>
                     <HeaderContainer />
 
-                    <Route path='/dialogs' render={() => <DialogsContainer />} /> {/* exact? */}
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-                    <Route path='/music' render={() => <Music />} />
-                    <Route path='/news' render={() => <News />} />
-                    <Route path='/users' render={() => <UsersContainer />} />
-                    <Route path='/login' render={() => <LoginPage />} />
-                    <Route path='/logout' render={() => <LogoutPage />} />
+                    <Suspense fallback={<Preloader />}>
+                        <Route path='/dialogs' render={() => <DialogsContainer />} /> {/* exact? */}
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                        <Route path='/music' render={() => <Music />} />
+                        <Route path='/news' render={() => <News />} />
+                        <Route path='/users' render={() => <UsersContainer />} />
+                        <Route path='/login' render={() => <LoginPage />} />
+                        <Route path='/logout' render={() => <LogoutPage />} />
+                    </Suspense>
                 </>
             );
         }
