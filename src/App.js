@@ -3,7 +3,7 @@ import './App.css';
 
 import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
-import { Route, withRouter, BrowserRouter } from 'react-router-dom';
+import { Route, withRouter, HashRouter } from 'react-router-dom';
 import { initializeApp } from './redux/app-reducer';
 import store from './redux/redux-store';
 
@@ -59,12 +59,14 @@ let AppContainer = compose(
     connect(mapStateToProps, { initializeApp }))(App);
 
 let MainApp = (props) => {
+
+    // Лучше использовать BrowserRouter
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
