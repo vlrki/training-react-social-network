@@ -1,0 +1,1 @@
+{"version":3,"sources":["Post.module.css","Friends.module.css","Profile.module.css"],"names":[],"mappings":"AAAA,kBACI,kBACJ,CCFA,+CACI,cACJ,CCFA,8BACI,kBACJ","file":"4.a8186abd.chunk.css","sourcesContent":[".item {\n    margin-bottom: 20px;\n}\n.item img {\n    max-width: 100%;\n}",".item img {\n    max-width: 100%;\n}",".form_add_post {\n    margin-bottom: 20px;\n}"]}
