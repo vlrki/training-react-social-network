@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "41b5f3da46136bf80fbf3f5fd33433ed",
+    "revision": "374ae094a97791fb69a74678b0bf9e89",
     "url": "/training-react-social-network/index.html"
   },
   {
-    "revision": "d9e6f439e376ece91e7e",
+    "revision": "f9310f7109ab2f5b17df",
     "url": "/training-react-social-network/static/css/3.f93178fb.chunk.css"
   },
   {
@@ -12,15 +12,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/training-react-social-network/static/css/4.a8186abd.chunk.css"
   },
   {
-    "revision": "6a5e39ad466476b375c1",
+    "revision": "c5dbdb9c52e1eec411ec",
     "url": "/training-react-social-network/static/css/5.27017000.chunk.css"
   },
   {
-    "revision": "c83b926563d78fcb1e58",
+    "revision": "bd60dfd7bebe31dc696f",
     "url": "/training-react-social-network/static/css/6.0e57522c.chunk.css"
   },
   {
-    "revision": "7c41f2263ed656afad48",
+    "revision": "f9b94d421ef6c8535d9a",
     "url": "/training-react-social-network/static/css/main.db0bdcc8.chunk.css"
   },
   {
@@ -32,24 +32,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/training-react-social-network/static/js/10.ec9f57c6.chunk.js"
   },
   {
-    "revision": "d9e6f439e376ece91e7e",
-    "url": "/training-react-social-network/static/js/3.97f8cb69.chunk.js"
+    "revision": "f9310f7109ab2f5b17df",
+    "url": "/training-react-social-network/static/js/3.ca64fc6f.chunk.js"
   },
   {
     "revision": "4cbe2726fb66bcef66051a0d56105b42",
-    "url": "/training-react-social-network/static/js/3.97f8cb69.chunk.js.LICENSE.txt"
+    "url": "/training-react-social-network/static/js/3.ca64fc6f.chunk.js.LICENSE.txt"
   },
   {
     "revision": "4f547ca6ebb69deb6ad1",
     "url": "/training-react-social-network/static/js/4.2635f36a.chunk.js"
   },
   {
-    "revision": "6a5e39ad466476b375c1",
-    "url": "/training-react-social-network/static/js/5.05b78ebf.chunk.js"
+    "revision": "c5dbdb9c52e1eec411ec",
+    "url": "/training-react-social-network/static/js/5.20fadf4e.chunk.js"
   },
   {
-    "revision": "c83b926563d78fcb1e58",
-    "url": "/training-react-social-network/static/js/6.17b871ad.chunk.js"
+    "revision": "bd60dfd7bebe31dc696f",
+    "url": "/training-react-social-network/static/js/6.d0d95b2d.chunk.js"
   },
   {
     "revision": "a497a0cf216c50219d5e",
@@ -64,12 +64,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/training-react-social-network/static/js/9.a2af0969.chunk.js"
   },
   {
-    "revision": "7c41f2263ed656afad48",
-    "url": "/training-react-social-network/static/js/main.70f7cfd5.chunk.js"
+    "revision": "f9b94d421ef6c8535d9a",
+    "url": "/training-react-social-network/static/js/main.334fc8f3.chunk.js"
   },
   {
-    "revision": "69846f757551679aee70",
-    "url": "/training-react-social-network/static/js/runtime-main.a01f9845.js"
+    "revision": "e81fee970a6b2003c471",
+    "url": "/training-react-social-network/static/js/runtime-main.2dbf2c37.js"
   },
   {
     "revision": "447449d2db4720b1c93a4337ee09d941",
