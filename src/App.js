@@ -3,7 +3,7 @@ import './App.css';
 
 import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
-import { Route, withRouter, HashRouter } from 'react-router-dom';
+import { Route, withRouter, HashRouter, Switch, Redirect } from 'react-router-dom';
 import { initializeApp } from './redux/app-reducer';
 import store from './redux/redux-store';
 
@@ -20,8 +20,17 @@ const LogoutPage = React.lazy(() => import('./components/Login/Logout'));
 
 class App extends Component {
 
+    catchAllUnhandledErrors = (promiseRejectionEvent) => {
+        console.error(promiseRejectionEvent);
+    }
+
     componentDidMount(props) {
         this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -34,13 +43,17 @@ class App extends Component {
                     <HeaderContainer />
 
                     <Suspense fallback={<Preloader />}>
-                        <Route path='/dialogs' render={() => <DialogsContainer />} /> {/* exact? */}
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-                        <Route path='/music' render={() => <Music />} />
-                        <Route path='/news' render={() => <News />} />
-                        <Route path='/users' render={() => <UsersContainer />} />
-                        <Route path='/login' render={() => <LoginPage />} />
-                        <Route path='/logout' render={() => <LogoutPage />} />
+                        <Switch>
+                            <Route path='/dialogs' render={() => <DialogsContainer />} /> {/* exact? */}
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+                            <Route path='/music' render={() => <Music />} />
+                            <Route path='/news' render={() => <News />} />
+                            <Route path='/users' render={() => <UsersContainer />} />
+                            <Route path='/login' render={() => <LoginPage />} />
+                            <Route path='/logout' render={() => <LogoutPage />} />
+                            <Route path='/' render={() => <Redirect to="/profile" />} />
+                            <Route path='*' render={() => <div>404 Not found</div>} />
+                        </Switch>
                     </Suspense>
                 </>
             );
