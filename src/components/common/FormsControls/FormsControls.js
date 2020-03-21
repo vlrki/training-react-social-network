@@ -1,4 +1,5 @@
 import React from "react";
+import Form from 'react-bootstrap/Form';
 
 const FormControl = ({ input, meta, child, ...props }) => {
     const hasError = meta.touched && meta.error;
@@ -44,5 +45,18 @@ export const Password = (props) => {
         <FormControl {...props}>
             <input type="password" {...input} {...restProps} className={"form-control" + " " + (hasError ? 'is-invalid' : '')} />
         </FormControl>
+    )
+}
+
+export const Checkbox = (props) => {
+    const { input, meta, type, label, child, ...restProps } = props;
+    const hasError = meta.touched && meta.error;
+
+    return (
+        <Form.Check {...props}
+            {...input} {...restProps}
+            type={"checkbox"}
+            checked={typeof input.value == 'undefined' ? false : input.value}
+        />
     )
 }
