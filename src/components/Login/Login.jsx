@@ -16,7 +16,7 @@ const minLength2 = minLengthCreator(2);
 const minLength6 = minLengthCreator(6);
 const maxLength50 = maxLengthCreator(50);
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
 
     const ReduxFormControl = ({ input, meta, type, placeholder, min, max }) => {
         return (
@@ -66,6 +66,22 @@ const LoginForm = ({ handleSubmit, error }) => {
             />
         </Form.Group>
 
+        { captchaUrl &&
+            <>
+                <img src={captchaUrl} />
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Captcha</Form.Label>
+                    <Field
+                        component={Password}
+                        name={"captcha"}
+                        type={"text"}
+                        placeholder=""
+                        validate={[required]}
+                    />
+                </Form.Group>
+            </>
+        }
+
         <Form.Group controlId="formBasicCheckbox">
             <Field component={ReduxFormCheckbox} name={"rememberMe"} type={"checkbox"} label={"Remember me"} />
         </Form.Group>
@@ -87,7 +103,7 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 const Login = (props) => {
 
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (props.isAuth) {
@@ -98,14 +114,15 @@ const Login = (props) => {
         <Row>
             <Col>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={onSubmit} />
+                <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
             </Col>
         </Row>
     </Container>;
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 });
 
 export default connect(mapStateToProps, { login, logout })(Login);
