@@ -1,2 +1,0 @@
-(this["webpackJsonpsocial-network"]=this["webpackJsonpsocial-network"]||[]).push([[9],{326:function(e,n,t){"use strict";t.r(n);var a=t(0),l=t.n(a),c=t(40),r=t(69),u=t(68);n.default=function(){return l.a.createElement(c.a,null,l.a.createElement(r.a,null,l.a.createElement(u.a,null,l.a.createElement("h1",null,"Music"))))}}}]);
-//# sourceMappingURL=9.a2af0969.chunk.js.map

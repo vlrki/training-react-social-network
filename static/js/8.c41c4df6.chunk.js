@@ -1,2 +1,2 @@
 (this["webpackJsonpsocial-network"]=this["webpackJsonpsocial-network"]||[]).push([[8],{329:function(t,o,n){"use strict";n.r(o);var e=n(0),a=n.n(e),c=n(35),l=n(32),s=n(27);o.default=Object(c.b)(null,{logout:l.d})((function(t){return t.logout(),a.a.createElement(s.a,{to:"/login"})}))}}]);
-//# sourceMappingURL=8.03e7c351.chunk.js.map
+//# sourceMappingURL=8.c41c4df6.chunk.js.map
