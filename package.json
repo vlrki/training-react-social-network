@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://vlrki.github.io/training-react-social-network",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "react": "^16.10.1",
     "react-bootstrap": "^1.0.0-beta.14",
